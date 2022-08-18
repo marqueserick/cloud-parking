@@ -1,6 +1,7 @@
 package com.marqueserick.cloudparking.controller.mapper;
 
 import com.marqueserick.cloudparking.controller.dto.ParkingDTO;
+import com.marqueserick.cloudparking.controller.dto.ParkingDTOCreate;
 import com.marqueserick.cloudparking.model.Parking;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,15 @@ public class ParkingMapper {
         return MODEL_MAPPER.map(parking, ParkingDTO.class);
     }
 
+    public Parking toParking(ParkingDTO parkingDTO) {
+        return MODEL_MAPPER.map(parkingDTO, Parking.class);
+    }
+
     public List<ParkingDTO> toParkingDTOList(List<Parking> parkingList) {
         return parkingList.stream().map(this::toParkingDTO).collect(Collectors.toList());
+    }
+
+    public Parking toParkingCreate(ParkingDTOCreate parkingDTO) {
+        return MODEL_MAPPER.map(parkingDTO, Parking.class);
     }
 }
