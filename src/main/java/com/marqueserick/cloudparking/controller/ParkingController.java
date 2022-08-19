@@ -6,7 +6,6 @@ import com.marqueserick.cloudparking.controller.mapper.ParkingMapper;
 import com.marqueserick.cloudparking.model.Parking;
 import com.marqueserick.cloudparking.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
