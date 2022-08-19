@@ -12,16 +12,6 @@ public class ParkingService {
 
     private static final Map<String, Parking> parkingMap = new HashMap<>();
 
-    static {
-        Parking parking = new Parking( getUUID(),"ABC-1234", "SP", "Onix", "Azul");
-        parkingMap.put(parking.getId(), parking);
-
-        Parking parking1 = new Parking( getUUID(),"EBC-1995", "SP", "Gol", "Preto");
-        parkingMap.put(parking1.getId(), parking1);
-
-
-    }
-
     private static String getUUID() {
         return UUID.randomUUID().toString().replace("-", "");
     }
