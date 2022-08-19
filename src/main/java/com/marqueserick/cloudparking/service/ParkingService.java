@@ -10,7 +10,7 @@ import java.util.*;
 @Service
 public class ParkingService {
 
-    private static Map<String, Parking> parkingMap = new HashMap<>();
+    private static final Map<String, Parking> parkingMap = new HashMap<>();
 
     static {
         Parking parking = new Parking( getUUID(),"ABC-1234", "SP", "Onix", "Azul");
@@ -41,6 +41,18 @@ public class ParkingService {
         parking.setId(getUUID());
         parking.setEntry(LocalDateTime.now());
         parkingMap.put(parking.getId(), parking);
+        return parking;
+    }
+
+    public void delete(String id) {
+        findById(id);
+        parkingMap.remove(id);
+    }
+
+    public Parking update(String id, Parking parkingUpdate) {
+        Parking parking = findById(id);
+        parking.setColor(parkingUpdate.getColor());
+        parkingMap.replace(id, parking);
         return parking;
     }
 }
