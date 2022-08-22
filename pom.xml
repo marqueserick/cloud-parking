@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<mapper.version>2.4.0</mapper.version>
 		<swagger.version>3.0.0</swagger.version>
+		<test-container.version>1.17.3</test-container.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -56,6 +57,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${test-container.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
