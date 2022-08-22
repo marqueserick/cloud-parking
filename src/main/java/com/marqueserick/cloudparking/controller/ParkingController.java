@@ -59,4 +59,11 @@ public class ParkingController {
         Parking parking = parkingService.update(id, parkingMapper.toParking(parkingDTO));
         return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
     }
+
+    @PostMapping("/{id}")
+    @ApiOperation("Checkout a parking")
+    public ResponseEntity<ParkingDTO> checkout(@PathVariable String id) {
+        Parking parking = parkingService.checkout(id);
+        return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
+    }
 }
