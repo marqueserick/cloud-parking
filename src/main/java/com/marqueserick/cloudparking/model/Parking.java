@@ -1,11 +1,16 @@
 package com.marqueserick.cloudparking.model;
 
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "tb_parking")
 public class Parking {
-
+    @Id
+    @Column(name = "id", nullable = false)
     private String id;
+
     private String license;
     private String state;
     private String model;
