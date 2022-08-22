@@ -12,7 +12,6 @@ import springfox.documentation.annotations.ApiIgnore;
 public class HelloController {
 
     @GetMapping
-    @ApiOperation("Saying hello to the world")
     public String hello() {
         return "Olá Mundo!";
     }
