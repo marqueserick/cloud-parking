@@ -2,6 +2,7 @@ package com.marqueserick.cloudparking.service;
 
 import com.marqueserick.cloudparking.exception.ParkingNotFoundException;
 import com.marqueserick.cloudparking.model.Parking;
+import com.marqueserick.cloudparking.repository.ParkingRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -10,39 +11,43 @@ import java.util.*;
 @Service
 public class ParkingService {
 
-    private static final Map<String, Parking> parkingMap = new HashMap<>();
+    private final ParkingRepository parkingRepository;
+
+    public ParkingService(ParkingRepository parkingRepository) {
+        this.parkingRepository = parkingRepository;
+    }
+
 
     private static String getUUID() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
     public List<Parking> findAll() {
-        return new ArrayList<>(parkingMap.values());
+        return parkingRepository.findAll();
     }
 
     public Parking findById(String id) {
-        Parking parking = parkingMap.get(id);
-        if(parking == null) throw new ParkingNotFoundException(id);
-
-        return parking;
+        return parkingRepository.findById(id).orElseThrow(() -> new ParkingNotFoundException(id));
     }
 
     public Parking create(Parking parking) {
         parking.setId(getUUID());
         parking.setEntry(LocalDateTime.now());
-        parkingMap.put(parking.getId(), parking);
+        parkingRepository.save(parking);
         return parking;
     }
 
     public void delete(String id) {
-        findById(id);
-        parkingMap.remove(id);
+        parkingRepository.delete(findById(id));
     }
 
     public Parking update(String id, Parking parkingUpdate) {
         Parking parking = findById(id);
         parking.setColor(parkingUpdate.getColor());
-        parkingMap.replace(id, parking);
+        parking.setModel(parkingUpdate.getModel());
+        parking.setState(parkingUpdate.getState());
+        parking.setLicense(parkingUpdate.getLicense());
+        parkingRepository.save(parking);
         return parking;
     }
 }
