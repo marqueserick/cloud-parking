@@ -3,14 +3,12 @@ package com.marqueserick.cloudparking.controller;
 import com.marqueserick.cloudparking.controller.dto.ParkingDTOCreate;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
-import org.apache.http.protocol.HTTP;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ParkingControllerTest {
