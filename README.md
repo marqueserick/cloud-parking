@@ -4,8 +4,14 @@
 <p> Serão controladas a entrada, a saída e o valor a ser cobrado do cliente, aplicando as boas práticas de desenvolvimento de API. </p>
 <b>Ferramentas Utilizadas</b>
 <ul>
-  <li>Spring Security</li>
-  <li>Banco de Dados PostegreSQL </li>
-  <li>JUnit para testes unitários e relatórios de cobertura de testes</li>
-  <li>Disponibilização da API no Heroku</li>
+    <li>Java 11</li>
+    <li>Swagger</li>
+    <li>Spring Security</li>
+    <li>Docker</li>
+    <li>Banco de Dados PostegreSQL</li>
+    <li>RestAssured para testar endpoints</li>
+    <li>Heroku para disponibilização da API</li>
 </ul>
+
+## Run Database
+docker run --name parking-db -p 5432:5432 -e POSTGRES_DB=parking -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123 -d postgres:10-alpine
