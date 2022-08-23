@@ -23,10 +23,11 @@ public class ParkingCheckout {
         }
 
         if (minutes <= ONE_DAY) {
-            return ONE_HOUR_PRICE + ((minutes - ONE_HOUR) / ONE_HOUR) * ADDITIONAL_PER_HOUR_PRICE;
+            int hours = (int) ((minutes - ONE_HOUR) / ONE_HOUR);
+            return ONE_HOUR_PRICE + (hours * ADDITIONAL_PER_HOUR_PRICE);
         }
         int days = (int) (minutes / ONE_DAY);
-        int hours = (int) (minutes - (days * ONE_DAY)/ONE_HOUR);
+        int hours = (int) (minutes - (days * ONE_DAY))/ONE_HOUR;
         return ONE_DAY_PRICE * days + (hours * ADDITIONAL_PER_HOUR_PRICE);
     }
 }
