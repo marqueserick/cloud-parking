@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.MediaType;
 
 import static org.hamcrest.Matchers.equalTo;
 
@@ -24,11 +25,11 @@ class ParkingControllerTest extends AbstractContainerBase{
     @Test
     void whenFindAllThenCheckResult() {
         RestAssured.given()
+                .auth().basic("user","erick@121212")
                 .when()
                 .get("/parking")
                 .then()
                 .statusCode(HttpStatus.SC_OK);
-                //.body("license[0]", equalTo("ABC-1234"));
     }
 
     @Test
@@ -40,9 +41,10 @@ class ParkingControllerTest extends AbstractContainerBase{
         parkingDTO.setModel("Gol");
         parkingDTO.setState("SP");
         RestAssured.given()
-                .body(parkingDTO)
+                .auth().basic("user","erick@121212")
                 .when()
-                .contentType("application/json")
+                .body(parkingDTO)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .post("/parking")
                 .then()
                 .statusCode(HttpStatus.SC_CREATED)
